@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Up Your Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/step4.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Let's Customize Your Shopnix Store</h2>
+        <h4>Set Up the Store</h4>
+        <div class="d-flex">
+            <!-- Left Side: Form -->
+            <div class="left-box flex-grow-1">
+                <div class="card p-4">
+                    <h5 class="mb-3">Basic Details</h5>
+                    <form id="storeSetupForm">
+                        <div class="mb-3">
+                            <label for="storeName" class="form-label">Name of the Store</label>
+                            <input type="text" id="storeName" class="form-control" placeholder="Enter store name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="storeTitle" class="form-label">Store Title</label>
+                            <input type="text" id="storeTitle" class="form-control" placeholder="Enter store title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Add Logo</label>
+                            <input type="file" id="storeLogo" class="form-control" accept="image/*">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Add Favicon</label>
+                            <input type="file" id="storeFavicon" class="form-control" accept="image/*">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Right Side: Live Preview -->
+            <div class="right-box ms-4 p-4 border">
+                <div class="text-center">
+                    <img id="previewLogo" src="assets/images/placeholder.png" alt="Logo" width="100">
+                    <h3 id="previewStoreName">Store Name</h3>
+                    <p id="previewStoreTitle">Store Title</p>
+                    <p>
+                        <img id="previewFavicon" src="assets/images/placeholder.png" alt="Favicon" width="32">
+                    </p>
+                    <p id="previewEmail">your-email@example.com</p>
+                    <p id="previewPhone">+91 9876543210</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation Buttons -->
+        <div class="d-flex justify-content-between mt-3">
+            <button class="btn btn-secondary" onclick="goBack()">Back</button>
+            <button class="btn btn-primary" onclick="reviewAndFinish()">Review and Finish</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("storeName").addEventListener("input", function() {
+            document.getElementById("previewStoreName").textContent = this.value || "Store Name";
+        });
+        
+        document.getElementById("storeTitle").addEventListener("input", function() {
+            document.getElementById("previewStoreTitle").textContent = this.value || "Store Title";
+        });
+        
+        document.getElementById("storeLogo").addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById("previewLogo").src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        document.getElementById("storeFavicon").addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById("previewFavicon").src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        function goBack() {
+            window.location.href = "step3.html";
+        }
+        
+        function reviewAndFinish() {
+            window.location.href = "final.html"        }
+    </script>
+</body>
+</html>

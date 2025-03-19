@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .sidebar {
+            width: 60px;
+            background: #2c3e50;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            padding: 20px;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+        .date-picker {
+            margin-bottom: 20px;
+        }
+        .summary {
+            display: flex;
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            text-align: center;
+        }
+        .sales-chart, .orders {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">Support</div>
+    <div class="main-content">
+        <h1>Dashboard</h1>
+        <div class="date-picker">
+            <input type="date" id="start-date"> to <input type="date" id="end-date">
+            <button onclick="updateData()">Go</button>
+        </div>
+        <div class="summary">
+            <div class="card">
+                <h3>Today's Sales</h3>
+                <p id="today-sales">Rs. 0.00</p>
+            </div>
+            <div class="card">
+                <h3>Total Sales</h3>
+                <p id="total-sales">Rs. 0.00</p>
+            </div>
+        </div>
+        <div class="sales-chart">
+            <h3>Sales between selected dates</h3>
+            <canvas id="salesChart"></canvas>
+        </div>
+        <div class="orders">
+            <h3>Current Orders</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Status</th>
+                        <th>Order ID</th>
+                        <th>Amount</th>
+                        <th>Ordered Date</th>
+                    </tr>
+                </thead>
+                <tbody id="orders-body">
+                    <tr><td colspan="4">No data</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        function updateData() {
+            document.getElementById('today-sales').innerText = 'Rs. 500.00';
+            document.getElementById('total-sales').innerText = 'Rs. 10,000.00';
+            
+            let ordersBody = document.getElementById('orders-body');
+            ordersBody.innerHTML = `
+                <tr>
+                    <td>Completed</td>
+                    <td>12345</td>
+                    <td>Rs. 250.00</td>
+                    <td>2025-03-19</td>
+                </tr>`;
+        }
+    </script>
+</body>
+</html>

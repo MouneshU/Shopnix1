@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step 3 - Add Product Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/step3.css"> 
+</head>
+<body>
+    <div class="container">
+        <div class="d-flex">
+            <!-- Left Side: Scrollable Form -->
+            <div class="left-box flex-grow-1">
+                <h2>Let's add your first product</h2>
+                <form id="productDetailsForm">
+                    <div class="form-group">
+                        <label for="productName">Product Name:</label>
+                        <input type="text" id="productName" class="form-control" placeholder="e.g., Anatomy Book" required>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="productDescription">Product Description:</label>
+                        <textarea id="productDescription" class="form-control" rows="4" placeholder="Enter product details..."></textarea>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="productImage">Add Image:</label>
+                        <input type="file" id="productImage" class="form-control" accept="image/*">
+                    </div>
+
+                    <!-- Pricing Details Section -->
+                    <h3 class="mt-4">Pricing Details</h3>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label for="netPrice">Net Price:</label>
+                            <input type="number" id="netPrice" class="form-control" placeholder="e.g., 80">
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="mt-4">
+                        <button type="button" class="btn btn-secondary" onclick="goBack()">Back</button>
+                        <button type="button" class="btn btn-primary" onclick="goNext()">Next</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Right Side: Live Preview -->
+            <div class="right-box ms-4">
+                <div class="product-preview text-center p-3 border rounded">
+                    <img id="previewImage" src="assets/images/placeholder.png" alt="Product Image" class="img-fluid">
+                    <h3 id="previewName">Product Title</h3>
+                    <p id="previewDescription">Product description will appear here...</p>
+                    <p><strong>Net Price:</strong> <span id="previewNetPrice">Rs. 0</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to update preview dynamically
+        function updatePreview() {
+            document.getElementById("previewName").innerText = document.getElementById("productName").value || "Product Title";
+            document.getElementById("previewDescription").innerText = document.getElementById("productDescription").value || "Product description will appear here...";
+            document.getElementById("previewNetPrice").innerText = "Rs. " + (document.getElementById("netPrice").value || "0");
+        }
+
+        // Live update event listeners
+        document.getElementById("productName").addEventListener("input", updatePreview);
+        document.getElementById("productDescription").addEventListener("input", updatePreview);
+        document.getElementById("netPrice").addEventListener("input", updatePreview);
+
+        // Image preview function
+        document.getElementById("productImage").addEventListener("change", function(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                document.getElementById("previewImage").src = reader.result;
+            };
+            if (event.target.files.length > 0) {
+                reader.readAsDataURL(event.target.files[0]);
+            }
+        });
+
+        function goBack() {
+            window.location.href = "step2.html";
+        }
+
+        function goNext() {
+            window.location.href = "step4.html";
+        }
+    </script>
+</body>
+</html>

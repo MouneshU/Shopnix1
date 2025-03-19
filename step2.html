@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step 2 - Add Product</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Step 2: Add a Product Type, Category, and Sub-Category</h2>
+        <form id="step2Form">
+            <label for="productType">Product Type:</label>
+<input type="text" id="productType" placeholder="e.g., books" required>
+<span id="productTypeError" class="error-message"></span> <!-- Error Message -->
+
+
+            <label for="category">Category (Optional):</label>
+            <input type="text" id="category" placeholder="e.g., Academic book">
+
+            <label for="subCategory">Sub-Category (Optional):</label>
+            <input type="text" id="subCategory" placeholder="e.g., Medical book">
+
+            <button type="button" class="btn btn-primary" id="step2Next">Next</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById("step2Next").addEventListener("click", function () {
+            let productType = document.getElementById("productType").value.trim();
+            let errorMessage = document.getElementById("productTypeError");
+        
+            if (productType === "") {
+                errorMessage.textContent = "Product Type is required!";
+            } else {
+                errorMessage.textContent = ""; // Clear error message if input is filled
+                window.location.href = "step3.html";
+            }
+        });
+        
+    </script>
+</body>
+</html>
